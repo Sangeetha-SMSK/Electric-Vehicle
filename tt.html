@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Chargers</title>
+    <style>
+            * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.nearby-chargers {
+    width: 90%;
+    max-width: 400px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #1f8c41;
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.charger-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.top-section .distance, .top-section .availability, .top-section .last-used {
+    background-color: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+h3 {
+    font-size: 16px;
+    color: #333;
+    margin: 8px 0;
+}
+
+.location {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+}
+
+.detail-item span:first-child {
+    margin-right: 4px;
+}
+
+.buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.view-button, .navigate-button, .start-charging {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.view-button {
+    background-color: #1f8c41;
+    color: #fff;
+}
+
+.navigate-button {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.start-charging {
+    width: 100%;
+    background-color: #1f8c41;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 16px;
+}
+
+    </style>
+</head>
+<body>
+
+    <section class="nearby-chargers">
+        <h2>Nearby Chargers</h2>
+        <p class="subtitle">based on your filters</p>
+
+        <div class="charger-card">
+            <div class="top-section">
+                <span class="distance">11 km</span>
+                <span class="availability">Available</span>
+                <span class="last-used">Last used 6 minutes ago</span>
+            </div>
+            <h3>Sree Saravana Bhavan | Sankagiri</h3>
+            <p class="location">Zeon Charging Station, near Saram Toll Gate, Vakutaram, Sankagiri, Tamil Nadu, India</p>
+            <div class="details">
+                <div class="detail-item">
+                    <span>⚡</span>
+                    <span>50 - 60 kW</span>
+                </div>
+                <div class="detail-item">
+                    <span>💲</span>
+                    <span>₹62</span>
+                </div>
+                <div class="detail-item">
+                    <span>💰</span>
+                    <span>₹25/kWh</span>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="view-button">View Charger</button>
+                <button class="navigate-button">Navigate</button>
+            </div>
+        </div>
+
+        <!-- Additional Charger Cards can go here -->
+
+        <button class="start-charging">Start Charging</button>
+    </section>
+
+</body>
+</html>

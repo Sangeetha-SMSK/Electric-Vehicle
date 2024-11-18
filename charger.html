@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Charging Station</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .station-info h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .station-info p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .status-filters {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .status-button {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #333;
+            background-color: #f0f0f0;
+        }
+
+        .status-button.available {
+            background-color: #1f8c41;
+            color: #fff;
+        }
+
+        .status-button.in-use {
+            background-color: #f0ad4e;
+            color: #fff;
+        }
+
+        .status-button.unavailable {
+            background-color: #d9534f;
+            color: #fff;
+        }
+/* Container styling */
+.charger-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between each card */
+    width: 100%; /* Full-width container */
+    max-width: 500px; /* Optional: set max width for the list */
+    margin: auto; /* Center the list */
+}
+
+/* Card styling */
+.charger-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Make each card take full width */
+}
+
+/* Left section (icon and button) */
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and button */
+}
+
+/* Icon styling */
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0; /* Background color for the icon circle */
+}
+
+.charger-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Availability button styling */
+.availability-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #4CAF50; /* Green for available */
+    cursor: default;
+}
+
+.available-card .availability-button {
+    background-color: #4CAF50; /* Green for available */
+}
+
+.in-use-card .availability-button {
+    background-color: #FFA500; /* Orange for in use */
+}
+
+.unavailable-card .availability-button {
+    background-color: #D32F2F; /* Red for unavailable */
+}
+
+/* Right section (charger details) */
+.right-section {
+    margin-left: auto;
+    text-align: left;
+}
+
+.right-section h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.right-section p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+
+        .icon-circle {
+            width: 73px;
+            height: 75px;
+            border-radius: 50%;
+            border: 1px solid #1f8c41;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .charger-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .availability-button {
+            background-color: #1f8c41;
+            color: #fff;
+            border: none;
+            width: 86px;
+            height: 31px;
+            border-radius: 80px;
+            cursor: pointer;
+            font-size: 12px;
+            text-align: center;
+            margin-top: -13px;
+        }
+
+        .charger-type {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .charger-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .charger-type h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .charger-type p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .partner-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1f8c41;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .slot-number {
+            border: 1px solid #ccc;
+            padding: 5px 8px;
+            border-radius: 50%;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .charger-card {
+                width: calc(50% - 20px); /* 2 cards per row */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .charger-card {
+                width: 100%; /* 1 card per row */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <button class="back-button">&#8592;</button>
+        <img src="zeon-logo.png" alt="Zeon Logo" class="logo">
+    </div>
+
+    <div class="station-info">
+        <h2>Sree Saravana Bhavan | Sankagiri</h2>
+        <p>Zeon Charging Station, near Salem Toll Gate, Vaikundam, Sankagiri, Tamil Nadu, India</p>
+    </div>
+
+    <div class="status-filters">
+        <button class="status-button available" onclick="filterChargers('available')">Available</button>
+        <button class="status-button in-use" onclick="filterChargers('in-use')">In use</button>
+        <button class="status-button unavailable" onclick="filterChargers('unavailable')">Unavailable</button>
+    </div>
+
+    <div class="charger-info">
+        <div class="charger-card available-card">
+            <div class="left-section">
+                <div class="icon-circle">
+                    <img src="favicon.svg" alt="Charger Icon" class="charger-icon">
+                </div>
+                <button class="availability-button">Available</button>
+            </div>
+            <div class="right-section">
+                <h3>CCS2 <span class="slot-number">2</span></h3>
+                <p>50 kW • ₹24.9/kWh</p>
+            </div>
+        </div>
+        <div class="charger-card available-card">
+            <div class="left-section">
+                <div class="icon-circle">
+                    <img src="favicon.svg" alt="Charger Icon" class="charger-icon">
+                </div>
+                <button class="availability-button">Available</button>
+            </div>
+            <div class="right-section">
+                <h3>CCS2 <span class="slot-number">2</span></h3>
+                <p>50 kW • ₹24.9/kWh</p>
+            </div>
+        </div>
+        <div class="charger-card available-card">
+            <div class="left-section">
+                <div class="icon-circle">
+                    <img src="favicon.svg" alt="Charger Icon" class="charger-icon">
+                </div>
+                <button class="availability-button">Available</button>
+            </div>
+            <div class="right-section">
+                <h3>CCS2 <span class="slot-number">2</span></h3>
+                <p>50 kW • ₹24.9/kWh</p>
+            </div>
+        </div>
+
+        <div class="charger-card in-use-card" style="display: none;">
+            <div class="left-section">
+                <div class="icon-circle">
+                    <img src="favicon.svg" alt="Charger Icon" class="charger-icon">
+                </div>
+                <button class="availability-button">In Use</button>
+            </div>
+            <div class="right-section">
+                <h3>CCS2 <span class="slot-number">1</span></h3>
+                <p>50 kW • ₹24.9/kWh</p>
+            </div>
+        </div>
+
+        <div class="charger-card unavailable-card" style="display: none;">
+            <div class="left-section">
+                <div class="icon-circle">
+                    <img src="favicon.svg" alt="Charger Icon" class="charger-icon">
+                </div>
+                <button class="availability-button">Unavailable</button>
+            </div>
+            <div class="right-section">
+                <h3>CCS2 <span class="slot-number">3</span></h3>
+                <p>50 kW • ₹24.9/kWh</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="partner-button">Charge via Partner App</button>
+</div>
+
+<script>
+function filterChargers(status) {
+    // Hide all charger cards
+    document.querySelectorAll('.charger-card').forEach(card => {
+        card.style.display = 'none';
+    });
+
+    // Reset button background colors
+    const buttons = document.querySelectorAll('.status-button');
+    buttons.forEach(button => {
+        button.style.backgroundColor = '#f0f0f0';
+        button.style.color = '#333';
+    });
+
+    // Show the appropriate card based on the status
+    if (status === 'available') {
+        document.querySelectorAll('.available-card').forEach(card => {
+            card.style.display = 'flex';
+        });
+        const availableButton = document.querySelector('.available');
+        availableButton.style.backgroundColor = '#1f8c41';
+        availableButton.style.color = '#fff';
+    } else if (status === 'in-use') {
+        document.querySelectorAll('.in-use-card').forEach(card => {
+            card.style.display = 'flex';
+        });
+        const inUseButton = document.querySelector('.in-use');
+        inUseButton.style.backgroundColor = '#f0ad4e';
+        inUseButton.style.color = '#fff';
+    } else if (status === 'unavailable') {
+        document.querySelectorAll('.unavailable-card').forEach(card => {
+            card.style.display = 'flex';
+        });
+        const unavailableButton = document.querySelector('.unavailable');
+        unavailableButton.style.backgroundColor = '#d9534f';
+        unavailableButton.style.color = '#fff';
+    }
+}
+</script>
+
+</body>
+</html>
